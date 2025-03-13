@@ -10,7 +10,8 @@
     "test": "npm run clean:dist && jest --passWithNoTests",
     "test:in-docker": "docker exec -it todo-backend npm test",
     "dev:docker": "docker compose up --build",
-    "clean:docker": "(docker rm todo-backend todo-db || true) && (docker rmi docker-node-backend || true) && (docker volume rm docker-node_pgdata || true)"
+    "clean:docker": "(docker rm todo-backend todo-db || true) && (docker rmi docker-node-backend || true) && (docker volume rm docker-node_pgdata || true)",
+    "ssh:connect": "ssh root@127.0.0.1-p 2223"
   },
   "author": "",
   "license": "ISC",
