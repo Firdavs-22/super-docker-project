@@ -1,0 +1,9 @@
+# Create
+POST http://localhost:5000/todos/
+Content-Type: application/json
+
+{
+  "title": "New API Task"
+}
+
+

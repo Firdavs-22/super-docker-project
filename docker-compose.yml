@@ -1,0 +1,44 @@
+services:
+  backend:
+    build: .
+    container_name: todo-backend
+    restart: always
+    ports:
+      - "5000:5000"
+      - "2223:22"
+    environment:
+      NODE_ENV: development
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: db
+      DB_NAME: todo
+      DB_PORT: 5432
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    tmpfs:
+      - /run/sshd
+    command: ["/bin/bash", "-c", "/usr/sbin/sshd -D & npm run dev"]
+
+  db:
+    image: postgres
+    container_name: todo-db
+    restart: always
+    user: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todo
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  pgdata:

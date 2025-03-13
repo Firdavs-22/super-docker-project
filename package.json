@@ -1,0 +1,38 @@
+{
+  "name": "docker-node",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon --legacy-watch src/server.ts",
+    "clean:dist": "rm -rf dist",
+    "build": "npm run clean:dist && tsc",
+    "start": "node dist/server.js",
+    "test": "npm run clean:dist && jest --passWithNoTests",
+    "test:in-docker": "docker exec -it todo-backend npm test",
+    "dev:docker": "docker compose up --build",
+    "clean:docker": "(docker rm todo-backend todo-db || true) && (docker rmi docker-node-backend || true) && (docker volume rm docker-node_pgdata || true)"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Simple application with a TypeScript And Testings",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.14.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.10",
+    "@types/pg": "^8.11.11",
+    "@types/supertest": "^6.0.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.2.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
