@@ -13,7 +13,7 @@
     "clean:docker": "(docker rm todo-backend todo-db || true) && (docker rmi docker-node-backend || true) && (docker volume rm docker-node_pgdata || true)",
     "ssh:connect": "ssh root@127.0.0.1-p 2223"
   },
-  "author": "",
+  "author": "Firdavs-22",
   "license": "ISC",
   "description": "Simple application with a TypeScript And Testings",
   "dependencies": {
